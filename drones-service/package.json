@@ -1,0 +1,27 @@
+{
+	"name": "drones-service",
+	"version": "1.0.0",
+	"description": "Microservice handling drones",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node ./src/index.js",
+		"dev": "nodemon ./src/index.js"
+	},
+	"keywords": [
+		"microservice",
+		"drone",
+		"drones"
+	],
+	"author": "Miki Nyeste",
+	"license": "ISC",
+	"dependencies": {
+		"avsc": "^5.7.4",
+		"dotenv": "^16.0.1",
+		"lodash": "^4.17.21",
+		"mongodb": "^4.7.0",
+		"node-rdkafka": "^2.13.0",
+		"nodemon": "^2.0.16",
+		"winston": "^3.7.2"
+	}
+}

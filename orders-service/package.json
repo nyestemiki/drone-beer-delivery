@@ -1,0 +1,32 @@
+{
+	"name": "orders-service",
+	"version": "1.0.0",
+	"description": "Microservice handling orders",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node ./src/index.js",
+		"dev": "nodemon ./src/index.js"
+	},
+	"keywords": [
+		"microservice",
+		"order",
+		"orders"
+	],
+	"author": "Miki Nyeste",
+	"license": "ISC",
+	"dependencies": {
+		"avsc": "^5.7.4",
+		"body-parser": "^1.20.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"express-winston": "^4.2.0",
+		"lodash": "^4.17.21",
+		"mongodb": "^4.7.0",
+		"node-rdkafka": "^2.13.0",
+		"nodemon": "^2.0.16",
+		"uuid": "^8.3.2",
+		"winston": "^3.7.2"
+	}
+}

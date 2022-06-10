@@ -36,7 +36,7 @@ const server = () => {
 	app.get('/', (_, res) => res.send('All good!'))
 
 	app.listen(config.servicePort, () =>
-		console.log(`Server running on ${config.host}:${config.servicePort}`)
+		console.log(`Server running on http://${config.host}:${config.servicePort}`)
 	)
 
 	return app

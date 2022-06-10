@@ -11,24 +11,32 @@ const consume = () => {
 
 	consumer.connect()
 
+	const consumeList = [topics.allocate_drone, topics.allocate_beer]
+
 	consumer
 		.on('ready', async () => {
-			console.log('consumer ready')
-			consumer.subscribe([topics.allocate_drone, topics.allocate_beer])
+			console.log(
+				`Consuming ${consumeList.join(', ')} topic${consumeList.length > 1 ? 's' : ''}`
+			)
+			consumer.subscribe(consumeList)
 			consumer.consume()
 		})
 		.on('data', data => {
 			switch (data.topic) {
 				case topics.allocate_drone:
 					const droneResponse = droneEventTypeResponse.fromBuffer(data.value)
-					console.log(`received message: ${droneResponse}`)
+					console.log(
+						`→ 🚁DRONE (order: ${droneResponse.orderId}, drone: ${droneResponse.droneId})`
+					)
 					connectToDb(
 						updateItem(droneResponse.orderId, { droneId: droneResponse.droneId })
 					)
 					break
 				case topics.allocate_beer:
 					const beerResponse = beerEventTypeResponse.fromBuffer(data.value)
-					console.log(`received message: ${beerResponse}`)
+					console.log(
+						`→ 🍻BEER (order: ${beerResponse.orderId}, onStock: ${beerResponse.onStock})`
+					)
 					connectToDb(updateItem(beerResponse.orderId, { onStock: beerResponse.onStock }))
 					break
 				default:

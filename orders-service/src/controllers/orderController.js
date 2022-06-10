@@ -12,13 +12,21 @@ const beerStream = getStreamForTopic(topics.get_beer)
 beerStream.on('error', error => console.error('Error in the kafka stream (BEER)', error))
 
 export const orderBeerAndDrone = ({ orderId, amount }) => {
-	queueMessage('DRONE', droneStream, droneEventTypeRequest.toBuffer({ orderId }))
-	queueMessage('BEER', beerStream, beerEventTypeRequest.toBuffer({ amount, orderId }))
+	queueMessage(
+		`🚁 DRONE (order: ${orderId})`,
+		droneStream,
+		droneEventTypeRequest.toBuffer({ orderId })
+	)
+	queueMessage(
+		`🍻 BEER (order: ${orderId}, amount: ${amount})`,
+		beerStream,
+		beerEventTypeRequest.toBuffer({ amount, orderId })
+	)
 }
 
 const queueMessage = (name, stream, message) => {
 	const success = stream.write(message)
-	console.log(`${name}: message ${success ? '' : 'not '}queued`)
+	console.log(success ? `← ${name}` : `ERROR (${name}): message not queued`)
 }
 
 export const getOrder = async orderId =>

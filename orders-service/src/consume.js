@@ -11,7 +11,7 @@ const consume = () => {
 
 	consumer.connect()
 
-	const consumeList = [topics.allocate_drone, topics.allocate_beer]
+	const consumeList = [topics.allocate_beer, topics.allocate_drone]
 
 	consumer
 		.on('ready', async () => {
